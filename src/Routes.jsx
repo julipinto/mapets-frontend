@@ -4,6 +4,7 @@ import Log from './pages/Log/Log';
 import Login from './pages/Log/Login';
 import Register from './pages/Log/Register';
 import HomeOutlet from './pages/Home/HomeOutlet';
+import Home from './pages/Home/Home';
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <div> home</div>,
+            element: <Home />,
           },
           // {
           //   path: 'ecommerce',

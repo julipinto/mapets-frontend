@@ -7,10 +7,10 @@ import routes from './Routes';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <head>
+    {/* <head>
       <link rel="manifest" href="/manifest.json" />
       <title>Mapet</title>
-    </head>
+    </head> */}
     <RouterProvider router={routes} />
   </React.StrictMode>
 );

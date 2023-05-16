@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         element: <HomeOutlet />,
         children: [
           {
-            path: 'home',
+            index: true,
             element: <div> home</div>,
           },
           // {

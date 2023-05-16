@@ -2,12 +2,11 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 
 function HomeOutlet() {
   const { pathname } = useLocation();
-  console.log(location);
 
   return (
     <div className="flex flex-col h-screen overflow-hidden">
       <header className="flex justify-between w-full text-center border-b border-grey p-4">
-        <img src="src/assets/logo.png" width={18} />
+        <img src="assets/logo.png" width={18} />
         <div className="flex gap-1">
           <svg
             className="text-gray-400"

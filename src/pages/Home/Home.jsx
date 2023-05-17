@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function Home() {
   return (
     <>
@@ -15,32 +17,22 @@ function Home() {
           ></path>
         </svg>
 
-        <div className="flex flex-col items-center">
-          <img
-            className="w-12 h-12 rounded-full mx-auto"
-            src="assets/images/mustache.png"
-            alt=""
-          ></img>
-          <span className="text-sm">Sr. Bigode</span>
-        </div>
-
-        <div className="flex flex-col items-center">
-          <img
-            className="w-12 h-12 rounded-full mx-auto"
-            src="assets/images/dudu.png"
-            alt=""
-          ></img>
-          <span className="text-sm">Dudu</span>
-        </div>
-
-        <div className="flex flex-col items-center">
-          <img
-            className="w-12 h-12 rounded-full mx-auto"
-            src="assets/images/popcorn.png"
-            alt=""
-          ></img>
-          <span className="text-sm">Pipoca</span>
-        </div>
+        {[
+          { name: 'Sr Bigode', img: 'assets/images/mustache.png' },
+          { name: 'Dudu', img: 'assets/images/dudu.png' },
+          { name: 'Pipoca', img: 'assets/images/popcorn.png' },
+        ].map((item, index) => (
+          <div key={index} className="flex flex-col items-center">
+            <Link to="/home/stories">
+              <img
+                className="w-12 h-12 rounded-full mx-auto"
+                src={item.img}
+                alt=""
+              ></img>
+              <span className="text-sm">{item.name}</span>
+            </Link>
+          </div>
+        ))}
       </header>
 
       <img src="assets/images/tracker.png" />

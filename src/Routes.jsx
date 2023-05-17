@@ -7,6 +7,7 @@ import HomeOutlet from './pages/Home/HomeOutlet';
 import Home from './pages/Home/Home';
 import Store from './pages/Home/Store';
 import MyPets from './pages/Home/MyPets';
+import Stories from './pages/Home/Stories';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
           {
             path: 'my-pets',
             element: <MyPets />,
+          },
+          {
+            path: 'stories',
+            element: <Stories />,
           },
         ],
       },

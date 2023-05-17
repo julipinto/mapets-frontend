@@ -1,6 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import api from '../../hooks/useApi';
 
 function Register() {
+  const navigate = useNavigate();
+
   return (
     <>
       <header>
@@ -22,51 +25,72 @@ function Register() {
         </div>
       </header>
 
-      <div className="flex flex-col gap-3 my-9">
-        <div className="bg-white rounded-3xl">
-          <form className="flex flex-col gap-2 p-4">
-            <label htmlFor="name">Nome</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              className="border-gray-300 border-b rounded-md p-2"
-            />
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
+          const { name, email, password } = e.target;
 
-            <label htmlFor="email">E-mail</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              className="border-gray-300 border-b rounded-md p-2"
-            />
+          const response = await api.post(
+            `?q=insertUser`,
+            JSON.stringify({
+              name: name.value,
+              email: email.value,
+              password: password.value,
+            }),
+            { contentType: 'application/json' }
+          );
 
-            <label htmlFor="password">Senha</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              className="border-gray-300 border-b rounded-md p-2"
-            />
+          console.log(response);
+          if (response.data.ok) navigate('/');
+          else alert(response.data.error);
+        }}
+        className="flex flex-col gap-3 my-9 p-4"
+      >
+        <div className="flex flex-col bg-white rounded-3xl p-2 gap-1">
+          <label htmlFor="name">Nome</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            className="border-gray-300 border-b rounded-md p-2"
+          />
 
-            <label htmlFor="password">Confirmar senha</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              className="border-gray-300 border-b rounded-md p-2"
-            />
-          </form>
+          <label htmlFor="email">E-mail</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            className="border-gray-300 border-b rounded-md p-2"
+          />
+
+          <label htmlFor="password">Senha</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            autoComplete="on"
+            className="border-gray-300 border-b rounded-md p-2"
+          />
+
+          <label htmlFor="password">Confirmar senha</label>
+          <input
+            type="password"
+            name="confirmpassword"
+            id="confirmpassword"
+            autoComplete="on"
+            className="border-gray-300 border-b rounded-md p-2"
+          />
         </div>
 
         <div className="flex flex-col gap-1 justify-center">
-          <Link to="/">
-            <button className="w-full bg-transparent border border-white hover:bg-gray-700 text-white py-1 px-6 rounded-full transition-colors duration-150">
-              Cadastrar
-            </button>
-          </Link>
+          <button
+            type="submit"
+            className="w-full bg-transparent border border-white hover:bg-gray-700 text-white py-1 px-6 rounded-full transition-colors duration-150"
+          >
+            Cadastrar
+          </button>
         </div>
-      </div>
+      </form>
     </>
   );
 }

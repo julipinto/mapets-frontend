@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import api from '../../hooks/useApi';
 
 function Login() {
+  const navigate = useNavigate();
   return (
     <>
       <header>
@@ -22,35 +24,53 @@ function Login() {
         </div>
       </header>
 
-      <div className="flex flex-col gap-3 my-40">
-        <div className="bg-white rounded-3xl">
-          <form className="flex flex-col gap-2 p-4">
-            <label htmlFor="email">E-mail</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              className="border-gray-300 border-b rounded-md p-2"
-            />
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
+          const { email, password } = e.target;
 
-            <label htmlFor="password">Senha</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              className="border-gray-300 border-b rounded-md p-2"
-            />
-          </form>
+          const response = await api.post(
+            `?q=showUser`,
+            JSON.stringify({
+              email: email.value,
+              password: password.value,
+            }),
+            { contentType: 'application/json' }
+          );
+
+          if (response.data.ok) navigate('/home');
+          else alert(response.data.error);
+        }}
+        className="flex flex-col gap-3 my-9 p-4"
+      >
+        <div className="flex flex-col bg-white rounded-3xl p-2 gap-1">
+          <label htmlFor="email">E-mail</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            className="border-gray-300 border-b rounded-md p-2"
+          />
+
+          <label htmlFor="password">Senha</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            autoComplete="on"
+            className="border-gray-300 border-b rounded-md p-2"
+          />
         </div>
 
         <div className="flex flex-col gap-1 justify-center">
-          <Link to="/home">
-            <button className="w-full bg-transparent border border-white hover:bg-gray-700 text-white py-1 px-6 rounded-full transition-colors duration-150">
-              Login
-            </button>
-          </Link>
+          <button
+            type="submit"
+            className="w-full bg-transparent border border-white hover:bg-gray-700 text-white py-1 px-6 rounded-full transition-colors duration-150"
+          >
+            Login
+          </button>
         </div>
-      </div>
+      </form>
     </>
   );
 }

@@ -6,7 +6,7 @@ function HomeOutlet() {
   return (
     <div className="flex flex-col h-screen overflow-hidden">
       <header className="flex justify-between w-full text-center border-b border-grey p-4">
-        <img src="assets/logo.png" width={18} />
+        <img src="../assets/logo.png" width={18} />
         <div className="flex gap-1">
           <svg
             className="text-gray-400"
@@ -37,11 +37,11 @@ function HomeOutlet() {
       <main className="flex-1 overflow-y-scroll">
         <Outlet />
       </main>
-      <footer className="flex justify-between w-full text-center border-t border-grey p-4">
+      <footer className="flex justify-between w-full text-center border-t border-grey py-2 px-4">
         <Link to="/home">
           <div
             className={`flex flex-col items-center ${
-              pathname === '/home' ? 'text-blue-700' : 'text-gray-400'
+              pathname === '/home' ? 'text-blue-500' : 'text-gray-400'
             }`}
           >
             <svg
@@ -59,10 +59,10 @@ function HomeOutlet() {
           </div>
         </Link>
 
-        <Link to="/my-pets">
+        <Link to="/home/my-pets">
           <div
             className={`flex flex-col items-center ${
-              pathname === '/my-pets' ? 'text-blue-700' : 'text-gray-400'
+              pathname === '/home/my-pets' ? 'text-blue-500' : 'text-gray-400'
             }`}
           >
             <svg
@@ -80,10 +80,10 @@ function HomeOutlet() {
           </div>
         </Link>
 
-        <Link to="/store">
+        <Link to="/home/store">
           <div
             className={`flex flex-col items-center ${
-              pathname === '/store' ? 'text-blue-700' : 'text-gray-400'
+              pathname === '/home/store' ? 'text-blue-500' : 'text-gray-400'
             }`}
           >
             <svg

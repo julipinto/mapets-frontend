@@ -5,6 +5,8 @@ import Login from './pages/Log/Login';
 import Register from './pages/Log/Register';
 import HomeOutlet from './pages/Home/HomeOutlet';
 import Home from './pages/Home/Home';
+import Store from './pages/Home/Store';
+import MyPets from './pages/Home/MyPets';
 
 const router = createBrowserRouter([
   {
@@ -36,12 +38,14 @@ const router = createBrowserRouter([
             index: true,
             element: <Home />,
           },
-          // {
-          //   path: 'ecommerce',
-          // },
-          // {
-          //   path: 'my-pets',
-          // },
+          {
+            path: 'store',
+            element: <Store />,
+          },
+          {
+            path: 'my-pets',
+            element: <MyPets />,
+          },
         ],
       },
     ],
